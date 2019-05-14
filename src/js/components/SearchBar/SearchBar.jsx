@@ -14,6 +14,7 @@ class SearchBar extends React.Component {
 
     this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
     this.handleSearchBtnClick = this.handleSearchBtnClick.bind(this);
+    this.handlePresetBtnClick = this.handlePresetBtnClick.bind(this);
   }
 
   handleSearchBarChange(event) {
@@ -26,16 +27,21 @@ class SearchBar extends React.Component {
     this.setState({ city: '' });
   }
 
+  handlePresetBtnClick(event) {
+    const { dispatch } = this.props;
+    dispatch(fetchWeather(event.target.name));
+  }
+
   render() {
     // const { searchbar } = this.props;
     return (
       <div>
         <div className='btn-group' role='group' aria-label='preset cities'>
-          <button type='button' className='btn btn-primary'>San Diego</button>
-          <button type='button' className='btn btn-primary'>New York</button>
-          <button type='button' className='btn btn-primary'>Washington D.C.</button>
-          <button type='button' className='btn btn-primary'>London</button>
-          <button type='button' className='btn btn-primary'>Tokyo</button>
+          <button type='button' className='btn btn-primary' name='San Diego' onClick={ this.handlePresetBtnClick }>San Diego</button>
+          <button type='button' className='btn btn-primary' name='New York' onClick={ this.handlePresetBtnClick }>New York</button>
+          <button type='button' className='btn btn-primary' name='Washington D.C.' onClick={ this.handlePresetBtnClick }>Washington D.C.</button>
+          <button type='button' className='btn btn-primary' name='London' onClick={ this.handlePresetBtnClick }>London</button>
+          <button type='button' className='btn btn-primary' name='Tokyo' onClick={ this.handlePresetBtnClick }>Tokyo</button>
         </div>
 
         <div className='form-group'>
