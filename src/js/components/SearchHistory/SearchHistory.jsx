@@ -6,6 +6,7 @@ class SearchHistory extends React.Component {
   }
 
   render() {
+    const { searchHistory } = this.props;
     return (
       <div className='card border-primary mb-3'>
         <div className='card-header text-white bg-primary'>
@@ -14,15 +15,12 @@ class SearchHistory extends React.Component {
         <div className='card-body'>
           <table className='table table-striped'>
             <tbody>
-              {/* .map goes here */}
-              <tr>
-                <td>San Diego</td>
-                <td className='text-right'><span>04/28/2017</span><br /><span>19:04:46</span></td>
-              </tr>
-              <tr>
-                <td>New York</td>
-                <td className='text-right'><span>04/29/2017</span><br /><span>20:01:13</span></td>
-              </tr>
+              { searchHistory.map(searchInstance => (
+                <tr key={ searchInstance.date + searchInstance.time }>
+                  <td>{ searchInstance.location }</td>
+                  <td className='text-right'><span>{ searchInstance.date }</span><br /><span>{ searchInstance.time }</span></td>
+                </tr>
+              )) }
             </tbody>
           </table>
         </div>

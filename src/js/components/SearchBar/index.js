@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 
 function mapStoreToProps(store) {
   return {
-    searchbar: store.searchbar.searchbar
+    // searchbar: store.searchbar.searchbar
   };
 }
 

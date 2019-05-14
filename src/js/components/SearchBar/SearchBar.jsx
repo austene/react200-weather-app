@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {
-  updateCityInput,
-  selectCity,
+  // updateCityInput,
+  fetchWeather,
 } from './searchbarActions';
 
 class SearchBar extends React.Component {
@@ -12,23 +12,22 @@ class SearchBar extends React.Component {
       city: '',
     };
 
-    this.handleCityInput = this.handleCityInput.bind(this);
-    this.handleSearchBarButton = this.handleSearchBarButton.bind(this);
+    this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
+    this.handleSearchBtnClick = this.handleSearchBtnClick.bind(this);
   }
 
-  handleCityInput(event) {
+  handleSearchBarChange(event) {
+    this.setState({ city: event.target.value });
+  }
+
+  handleSearchBtnClick() {
     const { dispatch } = this.props;
-    const { value } = event.target;
-    dispatch(updateCityInput(value));
-  }
-
-  handleSearchBarButton() {
-    const { searchbar, dispatch } = this.props;
-    dispatch(selectCity(searchbar));
+    dispatch(fetchWeather(this.state.city));
+    this.setState({ city: '' });
   }
 
   render() {
-    const { searchbar } = this.props;
+    // const { searchbar } = this.props;
     return (
       <div>
         <div className='btn-group' role='group' aria-label='preset cities'>
@@ -48,15 +47,15 @@ class SearchBar extends React.Component {
               placeholder='Search for a city'
               aria-label='search for a city'
               aria-describedby='city searchbar'
-              value={ searchbar }
-              onChange={ this.handleCityInput }
+              value={ this.state.city }
+              onChange={ this.handleSearchBarChange }
             />
             <div className='input-group-append'>
               <button
                 type='button'
                 className='btn btn-outline-secondary'
                 id='searchbar-btn'
-                onClick={ this.handleSearchBarButton }
+                onClick={ this.handleSearchBtnClick }
               >Go</button>
             </div>
           </div>

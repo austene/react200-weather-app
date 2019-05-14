@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 // export function getWeather() {
 //   return {
@@ -9,13 +9,16 @@ import axios from "axios";
 
 export const fetchWeather = (city) => {
   return (dispatch) => {
+    console.log(`city is ${city}`);
     dispatch({ type: 'FETCH_WEATHER_PENDING' });
-    // axios.get(api.openweathermap.org/data/2.5/weather?q={city}&APPID={process.env.WEATHER_API_KEY})
-    axios.get(`api.openweathermap.org/data/2.5/weather?q=${city}&APPID=1e31c9a46a3fe689fd81574f8f6b0c15`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=1e31c9a46a3fe689fd81574f8f6b0c15&units=imperial`)
+    // axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${process.env.WEATHER_API_KEY&units=imperial}`)
       .then((res) => {
-        dispatch({ type: 'FETCH_WEATHER_FULLFILLED', payload: res });
+        // console.log(`res is ${res}`);
+        dispatch({ type: 'FETCH_WEATHER_FULFILLED', payload: res });
       })
       .catch((err) => {
+        console.log(`err is ${err}`);
         dispatch({ type: 'FETCH_WEATHER_REJECTED', payload: err });
       });
   };
@@ -40,16 +43,16 @@ export const fetchWeather = (city) => {
 //   }
 // }
 
-export function updateCityInput(searchbar) {
-  return {
-    type: 'UPDATE_CITY_INPUT',
-    payload: { searchbar }
-  };
-}
+// export function updateCityInput(searchbar) {
+//   return {
+//     type: 'UPDATE_CITY_INPUT',
+//     payload: { searchbar }
+//   };
+// }
 
-export function selectCity(searchbar) {
-  return {
-    type: 'SELECT_CITY',
-    payload: { searchbar }
-  };
-}
+// export function selectCity(searchbar) {
+//   return {
+//     type: 'SELECT_CITY',
+//     payload: { searchbar }
+//   };
+// }
