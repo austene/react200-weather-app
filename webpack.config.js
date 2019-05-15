@@ -21,10 +21,6 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
 
-  plugins: [
-    new Dotenv()
-  ],
-
   module: {
     rules: [
       {
