@@ -7,31 +7,23 @@ const defaultState = {
   latitude: 0,
   longitude: 0,
   description: '',
-  weatherIcon: '',
+  weatherIcon: '01d',
   temperature: '',
   pressure: 0,
   humidity: '',
   lowestTemp: '',
   highestTemp: '',
   windSpeed: '',
-  searchHistory: []
+  searchHistory: [],
+  error: false
 };
 
 export default function SearchBarReducer (state = defaultState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    // case 'UPDATE_CITY_INPUT': {
-    //   return {
-    //     ...state,
-    //     searchbar: payload.searchbar
-    //   };
-    // }
-    
-    // case ' FETCH_WEATHER_PENDING'
 
     case 'FETCH_WEATHER_FULFILLED': {
-      console.log(`res is ${payload.res}`);
       return {
         ...state,
         location: payload.data.name,
@@ -47,24 +39,26 @@ export default function SearchBarReducer (state = defaultState, action) {
         windSpeed: payload.data.wind.speed,
         searchHistory: [
           ...state.searchHistory,
-          // { payload.data.name }
           {
             location: payload.data.name,
             date: moment().format('l'),
             time: moment().format('LTS'),
-            // time: moment().format('hh:mm:ss a')
           }
         ]
       };
     }
 
-    // case 'FETCH_WEATHER_REJECTED'
-
-    case 'SELECT_CITY': {
+    case 'FETCH_WEATHER_REJECTED': {
       return {
         ...state,
-        searchbar: '',
-        city: payload.searchbar
+        error: true
+      };
+    }
+
+    case 'DISMISS_ALERT': {
+      return {
+        ...state,
+        error: false
       };
     }
 

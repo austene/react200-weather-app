@@ -4,8 +4,8 @@ class SearchHistory extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
+    let id = 0;
     const { searchHistory } = this.props;
     return (
       <div className='card border-primary mb-3'>
@@ -16,7 +16,7 @@ class SearchHistory extends React.Component {
           <table className='table table-striped'>
             <tbody>
               { searchHistory.map(searchInstance => (
-                <tr key={ searchInstance.date + searchInstance.time }>
+                <tr key={ ++id }>
                   <td>{ searchInstance.location }</td>
                   <td className='text-right'><span>{ searchInstance.date }</span><br /><span>{ searchInstance.time }</span></td>
                 </tr>

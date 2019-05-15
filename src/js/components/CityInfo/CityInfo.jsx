@@ -13,7 +13,7 @@ class CityInfo extends React.Component {
           City Information
         </div>
         <div className='card-body text-center'>
-          <img src={ searchbarItems.weatherIcon } alt='xxx' className='img-weather' />
+          <img src={ `https://openweathermap.org/img/w/${searchbarItems.weatherIcon}.png` } alt='' className='img-weather' />
           <span><h3>{ searchbarItems.location }</h3></span>
           <p>Lat/Long: { searchbarItems.latitude }, {searchbarItems.longitude }</p>
           <hr />

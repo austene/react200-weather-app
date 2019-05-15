@@ -1,9 +1,10 @@
 import React from 'react';
 
 import {
-  // updateCityInput,
   fetchWeather,
 } from './searchbarActions';
+
+import AlertMessage from '../AlertMessage';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class SearchBar extends React.Component {
     this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
     this.handleSearchBtnClick = this.handleSearchBtnClick.bind(this);
     this.handlePresetBtnClick = this.handlePresetBtnClick.bind(this);
+    this.handleAlertClick = this.handleAlertClick.bind(this);
   }
 
   handleSearchBarChange(event) {
@@ -32,14 +34,19 @@ class SearchBar extends React.Component {
     dispatch(fetchWeather(event.target.name));
   }
 
+  handleAlertClick(value) {
+    const { dispatch } = this.props;
+    dispatch(dismissAlert(value));
+  }
+
   render() {
-    // const { searchbar } = this.props;
+    const { searchbarError } = this.props;
     return (
       <div>
         <div className='btn-group' role='group' aria-label='preset cities'>
           <button type='button' className='btn btn-primary' name='San Diego' onClick={ this.handlePresetBtnClick }>San Diego</button>
           <button type='button' className='btn btn-primary' name='New York' onClick={ this.handlePresetBtnClick }>New York</button>
-          <button type='button' className='btn btn-primary' name='Washington D.C.' onClick={ this.handlePresetBtnClick }>Washington D.C.</button>
+          <button type='button' className='btn btn-primary' name='Washington' onClick={ this.handlePresetBtnClick }>Washington D.C.</button>
           <button type='button' className='btn btn-primary' name='London' onClick={ this.handlePresetBtnClick }>London</button>
           <button type='button' className='btn btn-primary' name='Tokyo' onClick={ this.handlePresetBtnClick }>Tokyo</button>
         </div>
@@ -66,6 +73,8 @@ class SearchBar extends React.Component {
             </div>
           </div>
         </div>
+
+        <AlertMessage />
       </div>
     );
   }

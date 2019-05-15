@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SearchBar from './SearchBar';
+import AlertMessage from './AlertMessage';
 
 function mapStoreToProps(store) {
   return {
@@ -7,4 +7,4 @@ function mapStoreToProps(store) {
   };
 }
 
-export default connect(mapStoreToProps)(SearchBar);
+export default connect(mapStoreToProps)(AlertMessage);
